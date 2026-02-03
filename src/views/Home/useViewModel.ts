@@ -111,34 +111,13 @@ export function useViewModel() {
             let element = document.createElement('div')
             element.className = 'element-card'
 
-            const number = document.createElement('div')
-            number.className = 'card-id'
-            number.textContent = tableData.value[i].uid
-            if (isShowAvatar.value)
-                number.style.display = 'none'
-            element.appendChild(number)
-
-            const symbol = document.createElement('div')
-            symbol.className = 'card-name'
-            symbol.textContent = tableData.value[i].name
-            if (isShowAvatar.value)
-                symbol.className = 'card-name card-avatar-name'
-            element.appendChild(symbol)
-
-            const detail = document.createElement('div')
-            detail.className = 'card-detail'
-            detail.innerHTML = `${tableData.value[i].department}<br/>${tableData.value[i].identity}`
-            if (isShowAvatar.value)
-                detail.style.display = 'none'
-            element.appendChild(detail)
-
             if (isShowAvatar.value) {
                 const avatar = document.createElement('img')
                 avatar.className = 'card-avatar'
                 avatar.src = tableData.value[i].avatar
                 avatar.alt = 'avatar'
-                avatar.style.width = '140px'
-                avatar.style.height = '140px'
+                avatar.style.width = '200px'
+                avatar.style.height = '200px'
                 element.appendChild(avatar)
             }
             else {
@@ -146,6 +125,26 @@ export function useViewModel() {
                 avatarEmpty.style.display = 'none'
                 element.appendChild(avatarEmpty)
             }
+
+            const symbol = document.createElement('div')
+            symbol.className = 'card-name'
+            symbol.textContent = tableData.value[i].name
+            element.appendChild(symbol)
+
+            const number = document.createElement('div')
+            number.className = 'card-id'
+            number.textContent = tableData.value[i].uid
+            element.appendChild(number)
+
+            const department = document.createElement('div')
+            department.className = 'card-department'
+            department.textContent = tableData.value[i].department
+            element.appendChild(department)
+
+            const identity = document.createElement('div')
+            identity.className = 'card-identity'
+            identity.textContent = tableData.value[i].identity
+            element.appendChild(identity)
 
             element = useElementStyle({
                 element,

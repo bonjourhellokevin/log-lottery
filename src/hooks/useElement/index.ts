@@ -48,25 +48,85 @@ export function useElementStyle(props: IUseElementStyle) {
             target.style.boxShadow = `0 0 12px ${rgba(cardColor, 0.5)}`
         })
     }
-    element.children[0].style.fontSize = `${textSize * scale * 0.5}px`
-    if (person.uid) {
-        element.children[0].textContent = person.uid
+    const avatarElement = element.querySelector('.card-avatar') as HTMLImageElement
+    const nameElement = element.querySelector('.card-name')
+    const uidElement = element.querySelector('.card-id')
+    const departmentElement = element.querySelector('.card-department')
+    const identityElement = element.querySelector('.card-identity')
+
+    // 基础尺寸和位置（未缩放时，卡片高度400px）
+    const baseAvatarSize = 200          // 头像：200×200px，顶部对齐
+
+    // UID、部门、身份从下往上底部对齐
+    const baseIdentityHeight = 20     // 身份：20px高度
+    const baseDeptHeight = 20        // 部门：20px高度
+    const baseUidHeight = 20         // UID：20px高度
+    const baseIdentityTop = 375      // 身份：375px（底部25px）
+    const baseDeptTop = 350          // 部门：350px（身份上方25px）
+    const baseUidTop = 325           // UID：325px（部门上方25px）
+
+    // 名字：头像下方到UID上方的全部空间
+    const baseNameTop = 200          // 名字：200px（头像下方）
+    const baseNameHeight = 125       // 名字：125px高度（200到325之间）
+
+    // 缩放后的尺寸和位置
+    const scaledAvatarSize = baseAvatarSize * scale
+    const scaledNameTop = baseNameTop * scale
+    const scaledNameHeight = baseNameHeight * scale
+    const scaledUidTop = baseUidTop * scale
+    const scaledUidHeight = baseUidHeight * scale
+    const scaledDeptTop = baseDeptTop * scale
+    const scaledDeptHeight = baseDeptHeight * scale
+    const scaledIdentityTop = baseIdentityTop * scale
+    const scaledIdentityHeight = baseIdentityHeight * scale
+
+    if (uidElement) {
+        uidElement.style.fontSize = `${textSize * scale * 0.4}px`
+        uidElement.style.lineHeight = '1.2'
+        uidElement.style.top = `${scaledUidTop}px`
+        uidElement.style.maxHeight = `${scaledUidHeight}px`
+        if (person.uid) {
+            uidElement.textContent = person.uid
+        }
     }
 
-    element.children[1].style.fontSize = `${textSize * scale}px`
-    element.children[1].style.lineHeight = `${textSize * scale * 3}px`
-    element.children[1].style.textShadow = `0 0 12px ${rgba(cardColor, 0.95)}`
-    if (person.name) {
-        element.children[1].textContent = person.name
+    if (nameElement) {
+        nameElement.style.fontSize = `${textSize * scale * 0.7}px`
+        nameElement.style.lineHeight = '1.3'
+        nameElement.style.top = `${scaledNameTop}px`
+        nameElement.style.maxHeight = `${scaledNameHeight}px`
+        nameElement.style.textShadow = `0 0 12px ${rgba(cardColor, 0.95)}`
+        if (person.name) {
+            nameElement.textContent = person.name
+        }
     }
 
-    element.children[2].style.fontSize = `${textSize * scale * 0.5}px`
-    // 设置部门和身份的默认值
-    element.children[2].innerHTML = ''
-    if (person.department || person.identity) {
-        element.children[2].innerHTML = `${person.department ? person.department : ''}<br/>${person.identity ? person.identity : ''}`
+    if (departmentElement) {
+        departmentElement.style.fontSize = `${textSize * scale * 0.4}px`
+        departmentElement.style.lineHeight = '1.2'
+        departmentElement.style.top = `${scaledDeptTop}px`
+        departmentElement.style.maxHeight = `${scaledDeptHeight}px`
+        if (person.department) {
+            departmentElement.textContent = person.department
+        }
     }
-    element.children[3].src = person.avatar
+
+    if (identityElement) {
+        identityElement.style.fontSize = `${textSize * scale * 0.4}px`
+        identityElement.style.lineHeight = '1.2'
+        identityElement.style.top = `${scaledIdentityTop}px`
+        identityElement.style.maxHeight = `${scaledIdentityHeight}px`
+        if (person.identity) {
+            identityElement.textContent = person.identity
+        }
+    }
+
+    if (avatarElement && person.avatar) {
+        avatarElement.src = person.avatar
+        avatarElement.style.width = `${scaledAvatarSize}px`
+        avatarElement.style.height = `${scaledAvatarSize}px`
+    }
+
     return element
 }
 interface CardRule {
