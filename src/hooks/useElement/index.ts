@@ -54,20 +54,20 @@ export function useElementStyle(props: IUseElementStyle) {
     const departmentElement = element.querySelector('.card-department')
     const identityElement = element.querySelector('.card-identity')
 
-    // 基础尺寸和位置（未缩放时，卡片高度400px）
-    const baseAvatarSize = 200          // 头像：200×200px，顶部对齐
+    // 基础尺寸和位置（未缩放时，卡片高度300px）
+    const baseAvatarSize = 180          // 头像：180×180px，顶部对齐
 
     // UID、部门、身份从下往上底部对齐
-    const baseIdentityHeight = 20     // 身份：20px高度
-    const baseDeptHeight = 20        // 部门：20px高度
-    const baseUidHeight = 20         // UID：20px高度
-    const baseIdentityTop = 375      // 身份：375px（底部25px）
-    const baseDeptTop = 350          // 部门：350px（身份上方25px）
-    const baseUidTop = 325           // UID：325px（部门上方25px）
+    const baseIdentityHeight = 15     // 身份：15px高度
+    const baseDeptHeight = 15        // 部门：15px高度
+    const baseUidHeight = 15         // UID：15px高度
+    const baseIdentityTop = 282      // 身份：282px（底部18px）
+    const baseDeptTop = 262          // 部门：262px（身份上方20px）
+    const baseUidTop = 242           // UID：242px（部门上方20px）
 
     // 名字：头像下方到UID上方的全部空间
-    const baseNameTop = 200          // 名字：200px（头像下方）
-    const baseNameHeight = 125       // 名字：125px高度（200到325之间）
+    const baseNameTop = 180          // 名字：180px（头像下方）
+    const baseNameHeight = 62        // 名字：62px高度（180到242之间）
 
     // 缩放后的尺寸和位置
     const scaledAvatarSize = baseAvatarSize * scale
@@ -140,181 +140,181 @@ interface CardRule {
 const cardRule: CardRule = {
     1: {
         maxLine: 5,
-        scale: 2,
+        scale: 1.8,
         rule: [1],
         length: 1,
     },
     2: {
         maxLine: 5,
-        scale: 2,
+        scale: 1.8,
         rule: [2],
         length: 1,
     },
     3: {
         maxLine: 5,
-        scale: 2,
+        scale: 1.8,
         rule: [3],
         length: 1,
     },
     4: {
         maxLine: 5,
-        scale: 2,
+        scale: 1.6,
         rule: [4],
         length: 1,
     },
     5: {
         maxLine: 5,
-        scale: 2,
+        scale: 1.6,
         rule: [5],
         length: 1,
     },
     6: {
         maxLine: 3,
-        scale: 2,
+        scale: 1.6,
         rule: [3, 3],
         length: 2,
     },
     7: {
         maxLine: 4,
-        scale: 2,
+        scale: 1.5,
         rule: [3, 4],
         length: 2,
     },
     8: {
         maxLine: 5,
-        scale: 2,
+        scale: 1.5,
         rule: [3, 5],
         length: 2,
     },
     9: {
         maxLine: 5,
-        scale: 2,
+        scale: 1.4,
         rule: [4, 5],
         length: 2,
     },
     10: {
         maxLine: 5,
-        scale: 2,
+        scale: 1.4,
         rule: [5, 5],
         length: 2,
     },
     11: {
         maxLine: 6,
-        scale: 1.8,
+        scale: 1.3,
         rule: [5, 6],
         length: 2,
     },
     12: {
         maxLine: 6,
-        scale: 1.8,
+        scale: 1.3,
         rule: [6, 6],
         length: 2,
     },
     13: {
         maxLine: 7,
-        scale: 1.6,
+        scale: 1.3,
         rule: [6, 7],
         length: 2,
     },
     14: {
         maxLine: 7,
-        scale: 1.6,
+        scale: 1.3,
         rule: [7, 7],
         length: 2,
     },
     15: {
         maxLine: 8,
-        scale: 1.5,
+        scale: 1.2,
         rule: [7, 8],
         length: 2,
     },
     16: {
         maxLine: 8,
-        scale: 1.5,
+        scale: 1.2,
         rule: [8, 8],
         length: 2,
     },
     17: {
         maxLine: 6,
-        scale: 1.8,
+        scale: 1.1,
         rule: [5, 6, 6],
         length: 3,
     },
     18: {
         maxLine: 6,
-        scale: 1.8,
+        scale: 1.1,
         rule: [6, 6, 6],
         length: 3,
     },
     19: {
         maxLine: 7,
-        scale: 1.6,
+        scale: 1.1,
         rule: [6, 6, 7],
         length: 3,
     },
     20: {
         maxLine: 5,
-        scale: 1.6,
+        scale: 1.1,
         rule: [6, 7, 7],
         length: 3,
     },
     21: {
         maxLine: 7,
-        scale: 1.6,
+        scale: 1.1,
         rule: [7, 7, 7],
         length: 3,
     },
     22: {
         maxLine: 8,
-        scale: 1.5,
+        scale: 1.0,
         rule: [7, 7, 8],
         length: 3,
     },
     23: {
         maxLine: 8,
-        scale: 1.5,
+        scale: 1.0,
         rule: [7, 8, 8],
         length: 3,
     },
     24: {
         maxLine: 8,
-        scale: 1.5,
+        scale: 1.0,
         rule: [8, 8, 8],
         length: 3,
     },
     25: {
         maxLine: 9,
-        scale: 1.3,
+        scale: 0.95,
         rule: [8, 8, 9],
         length: 3,
     },
     26: {
         maxLine: 9,
-        scale: 1.3,
+        scale: 0.95,
         rule: [8, 9, 9],
         length: 3,
     },
     27: {
         maxLine: 9,
-        scale: 1.3,
+        scale: 0.95,
         rule: [9, 9, 9],
         length: 3,
     },
     28: {
         maxLine: 10,
-        scale: 1.2,
+        scale: 0.9,
         rule: [9, 9, 10],
         length: 3,
     },
     29: {
         maxLine: 10,
-        scale: 1.2,
+        scale: 0.9,
         rule: [9, 10, 10],
         length: 3,
     },
     30: {
         maxLine: 10,
-        scale: 1.2,
+        scale: 0.9,
         rule: [10, 10, 10],
         length: 3,
     },
