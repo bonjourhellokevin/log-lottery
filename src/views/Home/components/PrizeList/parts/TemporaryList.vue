@@ -26,7 +26,7 @@ const { t } = useI18n()
       </figure>
       <div class="items-center p-0 text-center card-body">
         <div class="tooltip tooltip-left" :data-tip="temporaryPrize.name">
-          <h2 class="p-0 m-0 overflow-hidden w-28 card-title whitespace-nowrap text-ellipsis">
+          <h2 class="p-0 m-0 overflow-hidden max-w-36 card-title whitespace-nowrap text-ellipsis text-sm">
             {{ temporaryPrize.name }}
           </h2>
         </div>

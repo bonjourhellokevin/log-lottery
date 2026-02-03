@@ -92,7 +92,7 @@ watch ([prizeShow, () => props.temporaryPrizeShow], (val) => {
               <div class="items-center p-0 card-body">
                 <div class="tooltip tooltip-left w-full pl-1" :data-tip="item.name">
                   <h2
-                    class="w-24 p-0 m-0 overflow-hidden card-title whitespace-nowrap text-ellipsis"
+                    class="max-w-36 p-0 m-0 overflow-hidden card-title whitespace-nowrap text-ellipsis text-sm"
                   >
                     {{ item.name }}
                   </h2>
