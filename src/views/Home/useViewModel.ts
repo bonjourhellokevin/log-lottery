@@ -50,7 +50,8 @@ export function useViewModel() {
     const ballRotationY = ref(0)
     const containerRef = ref<HTMLElement>()
     const canOperate = ref(true)
-    const cameraZ = ref(3000)
+    // 根据窗口高度动态计算相机z坐标：窗口高度的3.5倍，调整缩放比例使其看起来合适
+    const cameraZ = ref(window.innerHeight * 3.5)
     const scene = ref()
     const camera = ref()
     const renderer = ref()
@@ -107,6 +108,7 @@ export function useViewModel() {
         controls.value.addEventListener('change', render)
 
         const tableLen = tableData.value.length
+        const windowSize = { width: window.innerWidth, height: window.innerHeight }
         for (let i = 0; i < tableLen; i++) {
             let element = document.createElement('div')
             element.className = 'element-card'
@@ -168,10 +170,10 @@ export function useViewModel() {
             objects.value.push(object)
         }
         // 创建横铺的界面
-        const tableVertices = createTableVertices({ tableData: tableData.value, rowCount: rowCount.value, cardSize: cardSize.value })
+        const tableVertices = createTableVertices({ tableData: tableData.value, rowCount: rowCount.value, cardSize: cardSize.value, windowSize })
         targets.table = tableVertices
         // 创建球体
-        const sphereVertices = createSphereVertices({ objectsLength: objects.value.length })
+        const sphereVertices = createSphereVertices({ objectsLength: objects.value.length, windowSize })
         targets.sphere = sphereVertices
         window.addEventListener('resize', onWindowResize, false)
         transform(targets.table, 1000)
@@ -304,12 +306,13 @@ export function useViewModel() {
      * @description: 视野转回正面
      */
     function resetCamera() {
+        const targetZ = cameraZ.value
         new TWEEN.Tween(camera.value.position)
             .to(
                 {
                     x: 0,
                     y: 0,
-                    z: 3000,
+                    z: targetZ,
                 },
                 1000,
             )
@@ -332,7 +335,7 @@ export function useViewModel() {
                         // camera.value.lookAt(scene.value.position)
                         camera.value.position.y = 0
                         camera.value.position.x = 0
-                        camera.value.position.z = 3000
+                        camera.value.position.z = targetZ
                         camera.value.rotation.x = 0
                         camera.value.rotation.y = 0
                         camera.value.rotation.z = -0
