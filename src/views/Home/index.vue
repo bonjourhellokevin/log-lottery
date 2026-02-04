@@ -73,18 +73,18 @@ const { getTopTitle: topTitle, getTextColor: textColor, getTextSize: textSize, g
 .prize-display-card {
   display: flex;
   align-items: center;
-  gap: 16px;
-  padding: 16px 24px;
+  gap: 24px;
+  padding: 24px 32px;
   background: rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(10px);
-  border-radius: 16px;
+  border-radius: 20px;
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
   border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 .prize-image-container {
-  width: 64px;
-  height: 64px;
+  width: 120px;
+  height: 120px;
   flex-shrink: 0;
   display: flex;
   align-items: center;
@@ -95,18 +95,18 @@ const { getTopTitle: topTitle, getTextColor: textColor, getTextSize: textSize, g
   width: 100%;
   height: 100%;
   object-fit: cover;
-  border-radius: 12px;
+  border-radius: 16px;
 }
 
 .prize-info {
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 8px;
 }
 
 .prize-name {
   margin: 0;
-  font-size: 28px;
+  font-size: 42px;
   font-weight: 700;
   color: #fff;
   text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
