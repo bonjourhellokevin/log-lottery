@@ -41,24 +41,49 @@ globalThis.onmessage = async (e: MessageEvent<WorkerMessage>) => {
             }
 
             allData = excelData.map((item: any, index: number) => {
-                const imageUrl = item.imageUrl || item[Object.keys(item)[4]] || ''
+                const keys = Object.keys(item)
+                let imageUrl = ''
+                let prizeName = ''
+                let isAll = false
+                let count = 1
+                let desc = ''
+
+                for (const key of keys) {
+                    const lowerKey = key.toLowerCase()
+                    if (lowerKey === 'image' || lowerKey === 'imageurl' || lowerKey === 'image url' || key.includes('图片URL') || key.includes('图片')) {
+                        imageUrl = item[key]
+                    }
+                    else if (lowerKey === 'prizename' || lowerKey === 'name' || key.includes('奖品名称') || key.includes('名称')) {
+                        prizeName = item[key]
+                    }
+                    else if (lowerKey === 'isall' || lowerKey === 'full participation' || key.includes('可重复')) {
+                        isAll = item[key] === true || item[key] === 'Yes' || item[key] === '是'
+                    }
+                    else if (lowerKey === 'count' || key.includes('抽奖人数') || key.includes('人数')) {
+                        count = Number(item[key]) || 1
+                    }
+                    else if (lowerKey === 'desc' || lowerKey === 'description' || key.includes('描述')) {
+                        desc = item[key]
+                    }
+                }
+
                 return {
                     id: String(Date.now() + index),
-                    name: item.prizeName || item[Object.keys(item)[0]] || '',
+                    name: prizeName || keys[0] || '',
                     sort: index + 1,
-                    isAll: item.isAll === true || item[Object.keys(item)[1]] === true,
-                    count: Number(item.count) || Number(item[Object.keys(item)[2]]) || 1,
+                    isAll,
+                    count,
                     isUsedCount: 0,
                     picture: {
                         id: imageUrl ? `url-${index}` : '',
-                        name: imageUrl ? item.prizeName || item[Object.keys(item)[0]] || '' : '',
+                        name: imageUrl ? prizeName || '' : '',
                         url: imageUrl,
                     },
                     separateCount: {
                         enable: false,
                         countList: [],
                     },
-                    desc: item.desc || item[Object.keys(item)[3]] || '',
+                    desc,
                     isShow: true,
                     isUsed: false,
                     frequency: 1,
