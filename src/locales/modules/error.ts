@@ -18,9 +18,9 @@ export const errorEn = {
     exportFail: 'Export Failed',
     importSuccess: 'Import Success',
     importFail: 'Import Failed',
-    downloadSuccess: '下载成功',
-    deleteSuccess: '删除成功',
-    deleteFail: '删除失败',
+    downloadSuccess: 'Download Success',
+    deleteSuccess: 'Delete Success',
+    deleteFail: 'Delete Failed',
     success: 'Success',
     fail: 'Failed',
 }

@@ -15,6 +15,12 @@ export const dataEn = {
     defaultTitle: 'The Prelude to the Six Ministries of the Ming Dynasty Cabinet',
     xlsxName: 'personListTemplate-en.xlsx',
     readmeName: 'readme-en.md',
+    prizeXlsxName: 'prizeListTemplate-en.xlsx',
+    prizeConfigName: 'Prize Name',
+    prizeConfigIsAll: 'Full Participation',
+    prizeConfigCount: 'Count',
+    prizeConfigDesc: 'Description',
+    prizeConfigImageUrl: 'Image URL',
 }
 
 export const dataZhCn = {
@@ -34,6 +40,12 @@ export const dataZhCn = {
     defaultTitle: '大明内阁六部御前奏对',
     xlsxName: '人口登记表-zhCn.xlsx',
     readmeName: 'readme-zhCn.md',
+    prizeXlsxName: '奖品设置-zhCn.xlsx',
+    prizeConfigName: '奖品名称',
+    prizeConfigIsAll: '可重复',
+    prizeConfigCount: '抽奖人数',
+    prizeConfigDesc: '描述',
+    prizeConfigImageUrl: '图片URL',
 }
 
 export const data = {

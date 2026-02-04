@@ -24,6 +24,7 @@ export const tableEn = {
     numberParticipants: 'NumberParticipants',
     isDone: 'is Done',
     image: 'Image',
+    imageUrl: 'Image URL',
     onceNumber: 'Once Number',
     time: 'Time',
     // view setting
@@ -76,6 +77,7 @@ export const tableZhCn = {
     numberParticipants: '抽奖人数',
     isDone: '已抽取',
     image: '图片',
+    imageUrl: '图片URL',
     onceNumber: '单次抽取个数',
     time: '时间',
     // view setting

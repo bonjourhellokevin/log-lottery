@@ -1,5 +1,7 @@
 <script setup lang='ts'>
+import type { IPrizeConfig } from '@/types/storeType'
 import { Grip } from 'lucide-vue-next'
+import { ref } from 'vue'
 import { VueDraggable } from 'vue-draggable-plus'
 import { useI18n } from 'vue-i18n'
 import { HoverTip } from '@/components/index'
@@ -7,15 +9,30 @@ import EditSeparateDialog from '@/components/NumberSeparate/EditSeparateDialog.v
 import PageHeader from '@/components/PageHeader/index.vue'
 import { usePrizeConfig } from './usePrizeConfig'
 
-const { addPrize, resetDefault, delAll, delItem, prizeList, currentPrize, selectedPrize, submitData, changePrizePerson, changePrizeStatus, selectPrize, localImageList } = usePrizeConfig()
+const exportInputFileRef = ref<HTMLInputElement | null>(null)
+const { addPrize, resetDefault, delAll, delItem, prizeList, currentPrize, selectedPrize, submitData, changePrizePerson, changePrizeStatus, selectPrize, localImageList, handleFileChange, downloadTemplate, exportData } = usePrizeConfig({ exportInputFileRef })
 const { t } = useI18n()
+const limitType = '.xlsx,.xls'
+
+function updateImageFromUrl(item: IPrizeConfig) {
+    if (item.picture.url && typeof item.picture.url === 'string' && item.picture.url.startsWith('http')) {
+        item.picture.id = `url-${item.id}`
+        item.picture.name = item.name
+    }
+}
+
+function clearImageUrl(item: IPrizeConfig) {
+    if (typeof item.picture.url === 'string') {
+        item.picture.url = ''
+    }
+}
 </script>
 
 <template>
   <div>
     <PageHeader :title="t('viewTitle.prizeManagement')">
       <template #buttons>
-        <div class="flex w-full gap-3">
+        <div class="flex flex-wrap w-full gap-3">
           <button class="btn btn-info btn-sm" @click="addPrize">
             {{ t('button.add') }}
           </button>
@@ -24,6 +41,23 @@ const { t } = useI18n()
           </button>
           <button class="btn btn-error btn-sm" @click="delAll">
             {{ t('button.allDelete') }}
+          </button>
+          <div class="tooltip tooltip-bottom" :data-tip="t('tooltip.downloadTemplateTip')">
+            <button class="no-underline btn btn-secondary btn-sm" @click="downloadTemplate">
+              {{ t('button.downloadTemplate') }}
+            </button>
+          </div>
+          <label for="prize-import">
+            <div class="tooltip tooltip-bottom" :data-tip="t('tooltip.uploadExcelTip')">
+              <input
+                id="prize-import" ref="exportInputFileRef" type="file" class="" style="display: none"
+                :accept="limitType" @change="handleFileChange"
+              >
+              <span class="btn btn-primary btn-sm">{{ t('button.importData') }}</span>
+            </div>
+          </label>
+          <button class="btn btn-accent btn-sm" @click="exportData">
+            {{ t('button.exportResult') }}
           </button>
         </div>
       </template>
@@ -95,13 +129,21 @@ const { t } = useI18n()
           <div class="label">
             <span class="label-text">{{ t('table.image') }}</span>
           </div>
-          <select v-model="item.picture" class="truncate select select-warning select-sm">
-            <option v-if="item.picture.id" :value="{ id: '', name: '', url: '' }">❌</option>
-            <option disabled selected>{{ t('table.selectPicture') }}</option>
-            <option v-for="picItem in localImageList" :key="picItem.id" :title="picItem.name" class="w-full max-w-full" :value="picItem">
-              <span class="truncate w-option-xs">{{ picItem.name }}</span>
-            </option>
-          </select>
+          <div class="flex flex-col gap-2">
+            <input
+              v-model="item.picture.url"
+              type="text" :placeholder="t('table.imageUrl')"
+              class="w-full max-w-xs input-sm input input-bordered"
+              @change="updateImageFromUrl(item)"
+            >
+            <select v-model="item.picture" class="truncate select select-warning select-sm" @change="clearImageUrl(item)">
+              <option v-if="item.picture.id" :value="{ id: '', name: '', url: '' }">❌</option>
+              <option disabled selected>{{ t('table.selectPicture') }}</option>
+              <option v-for="picItem in localImageList" :key="picItem.id" :title="picItem.name" class="w-full max-w-full" :value="picItem">
+                <span class="truncate w-option-xs">{{ picItem.name }}</span>
+              </option>
+            </select>
+          </div>
         </label>
         <label v-if="item.separateCount" class="w-full max-w-xs form-control">
           <div class="label">
