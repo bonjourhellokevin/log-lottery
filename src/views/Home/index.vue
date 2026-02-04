@@ -63,7 +63,7 @@ const { getTopTitle: topTitle, getTextColor: textColor, getTextSize: textSize, g
 <style scoped lang="scss">
 .prize-display-container {
   position: fixed;
-  top: 80px;
+  top: 10px;
   left: 50%;
   transform: translateX(-50%);
   z-index: 100;

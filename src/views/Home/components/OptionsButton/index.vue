@@ -57,7 +57,7 @@ const { t } = useI18n()
         </button>
       </div>
 
-      <div class="start">
+      <div v-if="false" class="start">
         <button class="btn-stars btn-cancel" @click="quitLottery">
           <strong>{{ t('button.cancel') }}</strong>
           <div id="container-stars">
