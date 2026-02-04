@@ -55,19 +55,19 @@ export function useElementStyle(props: IUseElementStyle) {
     const identityElement = element.querySelector('.card-identity')
 
     // 基础尺寸和位置（未缩放时，卡片高度300px）
-    const baseAvatarSize = 180          // 头像：180×180px，顶部对齐
+    const baseAvatarSize = 180 // 头像：180×180px，顶部对齐
 
     // UID、部门、身份从下往上底部对齐
-    const baseIdentityHeight = 15     // 身份：15px高度
-    const baseDeptHeight = 15        // 部门：15px高度
-    const baseUidHeight = 15         // UID：15px高度
-    const baseIdentityTop = 282      // 身份：282px（底部18px）
-    const baseDeptTop = 262          // 部门：262px（身份上方20px）
-    const baseUidTop = 242           // UID：242px（部门上方20px）
+    const baseIdentityHeight = 15 // 身份：15px高度
+    const baseDeptHeight = 15 // 部门：15px高度
+    const baseUidHeight = 15 // UID：15px高度
+    const baseIdentityTop = 282 // 身份：282px（底部18px）
+    const baseDeptTop = 262 // 部门：262px（身份上方20px）
+    const baseUidTop = 242 // UID：242px（部门上方20px）
 
     // 名字：头像下方到UID上方的全部空间
-    const baseNameTop = 180          // 名字：180px（头像下方）
-    const baseNameHeight = 62        // 名字：62px高度（180到242之间）
+    const baseNameTop = 180 // 名字：180px（头像下方）
+    const baseNameHeight = 62 // 名字：62px高度（180到242之间）
 
     // 缩放后的尺寸和位置
     const scaledAvatarSize = baseAvatarSize * scale

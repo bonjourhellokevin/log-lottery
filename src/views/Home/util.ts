@@ -35,19 +35,19 @@ export function initTableData({ allPersonList, rowCount }: { allPersonList: IPer
 export function createTableVertices({ tableData, rowCount, cardSize, windowSize }: { tableData: IPersonConfig[], rowCount: number, cardSize: { width: number, height: number }, windowSize?: { width: number, height: number } }): Object3D[] {
     const tableLen = tableData.length
     const objects: Object3D[] = []
-    
+
     // 动态计算垂直偏移：基于窗口高度，确保横铺表格居中
     const windowHeight = windowSize?.height || 1080
     const cardCountInY = Math.ceil(tableData.length / rowCount)
     const totalHeight = cardCountInY * (cardSize.height + 20)
     const startYOffset = (windowHeight * 0.45) + (totalHeight / 2) // 屏幕高度的45%处开始，向上偏移
-    
+
     // 动态计算水平偏移：基于窗口宽度，确保横铺表格居中
     const windowWidth = windowSize?.width || 1920
     const maxCardsPerRow = rowCount
     const totalWidth = maxCardsPerRow * (cardSize.width + 40)
     const startXOffset = -(totalWidth / 2) + cardSize.width / 2
-    
+
     for (let i = 0; i < tableLen; i++) {
         const object = new Object3D()
 
@@ -67,13 +67,13 @@ export function createTableVertices({ tableData, rowCount, cardSize, windowSize 
 export function createSphereVertices({ objectsLength, windowSize }: { objectsLength: number, windowSize?: { width: number, height: number } }): Object3D[] {
     let i = 0
     const resObjects: Object3D[] = []
-    
+
     // 动态计算球体半径：基于窗口宽度的较小值，确保在不同分辨率下都能正常显示
     const windowWidth = windowSize?.width || 1920
     const windowHeight = windowSize?.height || 1080
     const minDimension = Math.min(windowWidth, windowHeight)
     const sphereRadius = Math.max(600, minDimension * 0.35) // 最小600px，或屏幕较小边的35%
-    
+
     // const objLength = objects.value.length
     const vector = new Vector3()
 

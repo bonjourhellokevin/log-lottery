@@ -1,5 +1,4 @@
 import type { IPersonConfig, IPrizeConfig } from '@/types/storeType'
-import { id } from 'zod/v4/locales'
 
 const originUrl = 'https://to2026.xyz'
 type IPersonConfigWithoutUuid = Omit<IPersonConfig, 'uuid'>

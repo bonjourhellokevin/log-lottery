@@ -65,6 +65,7 @@ export function useViewModel() {
     }
     // 页面数据初始值
     const currentStatus = ref<LotteryStatus>(LotteryStatus.init) // 0为初始状态， 1为抽奖准备状态，2为抽奖中状态，3为抽奖结束状态
+    const showPrizeName = ref(false)
     const tableData = ref<any[]>([])
     const luckyTargets = ref<any[]>([])
     const luckyCardList = ref<number[]>([])
@@ -564,6 +565,8 @@ export function useViewModel() {
         if (!canOperate.value) {
             return
         }
+        // 显示奖品名称
+        showPrizeName.value = true
         // 停止抽奖音乐
         stopLotteryMusic()
 
@@ -682,6 +685,7 @@ export function useViewModel() {
         if (!canOperate.value) {
             return
         }
+        showPrizeName.value = false
         const customCount = currentPrize.value.separateCount
         if (customCount && customCount.enable && customCount.countList.length > 0) {
             for (let i = 0; i < customCount.countList.length; i++) {
@@ -911,5 +915,7 @@ export function useViewModel() {
         isInitialDone,
         titleFont,
         titleFontSyncGlobal,
+        currentPrize,
+        showPrizeName,
     }
 }
